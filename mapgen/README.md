@@ -1,29 +1,32 @@
+# Generate Pac-Man Mazes using Tetris-stacking
 
-Pac-Man Map Generator
-=====================
+## Progress
 
-Objective
----------
+This is a sample of the current generating model:
 
-The objective of this experiment is to create a method for generating random
-maps (mazes) that seem aesthetically and functionally similar to the original
-maps found in Pac-Man and Ms. Pac-Man.  When completed, this algorithm will be
-added to the accurate Pac-Man project to increase the playability of the arcade
-classic.
+<img src="https://github.com/shaunew/Pac-Man/raw/gh-pages/mapgen/tetris/working.png" />
 
-Status
-------
+[Click here to view the actual demo.](http://shaunew.github.com/Pac-Man/mapgen/tetris)
 
-<a href="http://shaunew.github.com/Pac-Man/mapgen">Click here to read the article explaining the current solution</a>
+## Summary
 
-History
--------
+In the pursuit of a simple maze generator for Pac-Man, we first visualize the
+structure of the original Pac-Man maps as a tiling of blocks.  Then, we attempt
+to simplify this structure by lowering its resolution while still maintaining features.
+(The maps are symmetric, so only the middle to the right half are shown.)
 
-- The 'randomfill' folder contains a Python solution that uses a special
-  heuristic for progressively placing random valid walls.
-- The 'answerset' folder contains a
-  [Clingo](http://potassco.sourceforge.net/#clingo) solution that specifies
-  declarative constraints.  This [blog post](http://eis-blog.ucsc.edu/2011/10/map-generation-speedrun/)
-  is a good introduction to map generation using Clingo.
-- The 'spanningtree' folder is a lead to apply a modified version of conventional maze generation algorithms.
-- The 'tetris' folder contains a solution for stacking pieces in a tetris like manner.
+The first row shows the simplified representations.  The second row shows the
+edits to each cell that must be performed after upscaling by a factor of 3.
+A blue down arrow means the cell's height must be increased by 1.  A red left
+arrow means the cell's width must be decreased by 1.
+
+<img src="https://github.com/shaunew/Pac-Man/raw/gh-pages/mapgen/tetris/simplify.png" />
+
+We propose that one may generate a random simplified map (phase 1), then transform
+it to a correctly sized map by upscaling and applying some clever
+shifting/resizing of a few key wall segments (phase 2).
+
+## Contents
+
+* index.htm currently displays a demo of random simple maps using mapgen.js.
+* drawpresets.htm draws the simplified versions of the original maps.
